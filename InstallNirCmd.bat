@@ -1,14 +1,15 @@
 @echo off & setlocal enableDelayedExpansion
 
-set "revisionRequired=3.26"
+set "revisionRequired=3.28"
 set  "openLib=(ren "%~nx0" temp.bat & ren "Library.bat" "%~nx0""
 set "closeLib=ren "%~nx0" "Library.bat" & ren temp.bat "%~nx0")" & set "self=%~nx0"
 (2>nul %openLib% && ( call :revision ) || ( ren temp.bat "%~nx0" & echo Library.bat Required & timeout /t 3 & exit))
 	call :stdlib 100 100
 	call :macros
 %closeLib%  && ( cls & goto :setup)
+:::Install NirCmd
 :setup
-
+%license% "Install NirCmd"
 set "url=https://www.nirsoft.net/utils/nircmd-x64.zip"
 set "file=nircmd.zip"
 
